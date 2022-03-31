@@ -1,0 +1,30 @@
+spring:
+  main:
+    web-application-type: none
+#Logging properties
+logging:
+  file.name: C:\Users\avodnala\SpringBootCode/log/logfile.log
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
+  level:
+    com:
+      spring:
+        batch: INFO
+    org:
+      Springframework: INFO
+    
+batch-properties:
+  reader:
+    filename: inputdetails.txt
+    filepath: C:\Users\avodnala\SpringBootCode
+    delimiter: ","
+    fileds:
+      - firstName
+      - lastName
+     
+  writer:
+    filename: finaloutput.txt
+    filepath: C:\Users\avodnala\SpringBootCode
+    format: "%-5.5s%-15.15s"
+    fields:
+      - fullName

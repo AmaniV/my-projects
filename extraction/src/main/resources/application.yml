@@ -1,0 +1,17 @@
+server:
+  port: 8030
+logging:
+  file.name: application.log
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      extractService:
+         registerHealthIndicator: true
+         slidingWindowSize: 50
+         permittedNumberOfCallsInHalfOpenState: 3
+         slidingWindowType: TIME_BASED
+         minimum-number-of-calls: 20
+         wait-duration-in-open-state: 50s
+         failure-rate-threshold: 50
+employee-url: http://localhost:8086/api/v1

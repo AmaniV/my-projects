@@ -1,0 +1,29 @@
+server:
+  port: 8050
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: employeeModule
+        uri: http://localhost:8086/
+        predicates:
+        - Path=/api/v1/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: fetchFallback
+            fallbackUri: forward:/fallback
+      - id: extractionModule
+        uri: http://localhost:8030/
+        predicates:
+        - Path=/api2/v2/**
+        filters:
+        - name: CircuitBreaker
+          args:
+            name: fetchFallback
+            fallbackUri: forward:/fallback
+      - id: Module-fallback
+        uri: http://localhost:8050
+        predicates:
+        - Path=/fallback
