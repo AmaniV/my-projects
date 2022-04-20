@@ -32,3 +32,4 @@ dependencyManagement {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+#end
